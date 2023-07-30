@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Residente, Vehiculos, Visitantes
+from .models import Residente, Vehiculos, Visitantes #  tuve que agregar .models agregar [ . ] si no, no funciona
 
 # Register your models here.
 admin.site.register(Residente)

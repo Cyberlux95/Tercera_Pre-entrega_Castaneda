@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% if formularioResidentes.errors %} #esto se liga con URL.PY
+<p style="color: red; text-align: left;">Vuelva a intentarlo, revise los datos.</p>
+{% endif %}
+{% block contenido %}
+
+<h2 style="color: white;">De de alta al nuevo residente</h2>
+
+<form action="" method="POST">{% csrf_token %}
+
+    <table>
+
+
+        {{ formulario1.as_table }}
+
+
+    </table>
+
+
+    <input type="submit", value="enviar">
+
+</form>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        <li  style="color: white; text-align: left;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+
+{% endif %}
+{% endblock contenido %}

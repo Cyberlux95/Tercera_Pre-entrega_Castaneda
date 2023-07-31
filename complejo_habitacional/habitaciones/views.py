@@ -1,9 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import formResidente, formVehiculos, formVisitante
 from .models import Residente, Vehiculos, Visitantes
 from django.contrib import messages
 
 # Create your views here.
+def home(request):
+    contexto = {}
+    http_response = render(
+        request=request,
+        template_name='base.html',
+        context=contexto,
+    )
+    return http_response
+
+
 def form_residentes(request):
     if request.method == 'POST':
         formulario = formResidente(request.POST) #se conecta con forms.py
@@ -24,7 +34,7 @@ def form_residentes(request):
             
             
             # Redireccionar a la misma página para evitar reenvío del formulario
-            return redirect('formulario-Residentes') #aqui va el url de este formulario
+            return redirect('formulario-residentes') #aqui va el url de este formulario
             
     else:
         formulario1 = formResidente() #se conecta con forms.py
@@ -52,7 +62,7 @@ def form_visitantes(request):
             
             
             # Redireccionar a la misma página para evitar reenvío del formulario
-            return redirect('formulario-Visitante') #aqui va el url de este formulario
+            return redirect('formulario-visitantes') #aqui va el url de este formulario
             
     else:
         formulario1 = formVisitante() #se conecta con forms.py
@@ -76,11 +86,11 @@ def form_vehiculos(request):
             vehiculo.save()
             
             # Mensaje de éxito 
-            messages.success(request, f'Visitante: "{vehiculo.marca}" guardado correctamente.')
+            messages.success(request, f'Vehiculo: "{vehiculo.marca}" guardado correctamente.')
             
             
             # Redireccionar a la misma página para evitar reenvío del formulario
-            return redirect('formulario-Visitante') #aqui va el url de este formulario
+            return redirect('formulario-vehiculos') #aqui va el url de este formulario
             
     else:
         formulario1 = formVehiculos() #se conecta con forms.py
@@ -95,7 +105,7 @@ def busqueda(request):
         # Realizar las consultas para obtener los resultados de la búsqueda
         resultados_residentes = Residente.objects.filter(nombre__icontains=palabra_clave)
         resultados_visitantes = Visitantes.objects.filter(nombre__icontains=palabra_clave)
-        resultados_vehiculos = Vehiculos.objects.filter(nombre__icontains=palabra_clave)
+        resultados_vehiculos = Vehiculos.objects.filter(marca__icontains=palabra_clave)
 
         return render(request, 'busqueda.html', {
             'palabra_clave': palabra_clave,

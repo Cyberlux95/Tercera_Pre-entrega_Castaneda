@@ -16,7 +16,7 @@
             <h3 style="color: white;">Residentes:</h3>
             <ul>
                 {% for residente in resultados_residentes %}
-                    <li style="color: white;">Nombre Completo: {{ residente.nombre }} - Direccion: {{ residente.direccion }} - Telefono: {{ residente.telefono }}</li>
+                    <li style="color: white;">Nombre: {{ residente.nombre }} - Habitacion: {{ residente.habitacion }} - Telefono: {{ residente.telefono }}</li>
                 {% empty %}
                     <li style="color: white;">No se encontraron residentes con la palabra clave.</li>
                 {% endfor %}
@@ -27,7 +27,7 @@
             <h3 style="color: white;">Vehiculos:</h3>
             <ul>
                 {% for sector in resultados_Vehiculos %}
-                    <li style="color: white;">Sector: {{ sector.nombre }} - Cod.Sector: {{ sector.codigo }}</li>
+                    <li style="color: white;">Marca: {{ Vehiculos.marca }} - Modelo: {{ Vehiculos.marca }} - Placas: {{ Vehiculos.placas}} </li>
                 {% empty %}
                     <li style="color: white;">No se encontraron Vehiculos con la palabra clave.</li>
                 {% endfor %}

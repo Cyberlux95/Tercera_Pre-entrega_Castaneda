@@ -33,5 +33,5 @@ class Visitantes(models.Model):
     dni = models.CharField(max_length=18, blank=True, verbose_name="Codigo de DNI")
 
     def __str__(self):
-        return f"{self.nombre},{self.apellido}, visitante de: {self.residente} "
+        return f"{self.nombre},{self.apellido}, "
 

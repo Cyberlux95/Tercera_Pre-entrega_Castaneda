@@ -1,5 +1,5 @@
 from django import forms
-from .models import Residente
+from .models import Residente, Vehiculos, Visitantes
 
 class formResidente(forms.Form):
     nombre = forms.CharField()
@@ -19,7 +19,7 @@ class formVehiculos(forms.Form):
 
     
 class formVisitante(forms.Form):
-    residente = forms.ModelChoiceField(queryset=Residente.objects.all())
+    nombre_residente = forms.ModelChoiceField(queryset=Residente.objects.all())
     nombre = forms.CharField()
     apellido = forms.CharField()
     telefono = forms.IntegerField()

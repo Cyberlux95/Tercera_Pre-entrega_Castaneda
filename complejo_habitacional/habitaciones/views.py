@@ -37,19 +37,20 @@ def form_residentes(request):
             return redirect('formulario-residentes') #aqui va el url de este formulario
             
     else:
-        formulario1 = formResidente() #se conecta con forms.py
+        formulario_residente = formResidente() #se conecta con forms.py
         
-    return render(request, 'residentes.html', {'formulario1': formulario1})
+    return render(request, 'residentes.html', {'formulario_residente': formulario_residente})
 
 
 def form_visitantes(request):
     if request.method == 'POST':
-        formulario = formResidente(request.POST)  #se conecta con forms.py
+        formulario = formVisitante(request.POST)  #se conecta con forms.py
         
         if formulario.is_valid():
             informacion = formulario.cleaned_data
             
-            visitante = Visitantes(noresidente =informacion['residente'],
+            visitante = Visitantes(
+                                # nombre_residente =informacion['residente'],
                                  nombre=informacion['nombre'], 
                                  apellido=informacion['apellido'], 
                                  telefono=informacion['telefono'], 
@@ -65,9 +66,9 @@ def form_visitantes(request):
             return redirect('formulario-visitantes') #aqui va el url de este formulario
             
     else:
-        formulario1 = formVisitante() #se conecta con forms.py
+        formulario_visitante = formVisitante() #se conecta con forms.py
         
-    return render(request, 'visitantes.html', {'formulario1': formulario1})
+    return render(request, 'visitantes.html', {'formulario_visitante': formulario_visitante})
 
 
 def form_vehiculos(request):
@@ -93,9 +94,9 @@ def form_vehiculos(request):
             return redirect('formulario-vehiculos') #aqui va el url de este formulario
             
     else:
-        formulario1 = formVehiculos() #se conecta con forms.py
+        formulario_vehiculo = formVehiculos() #se conecta con forms.py
         
-    return render(request, 'vehiculos.html', {'formulario1': formulario1})
+    return render(request, 'vehiculos.html', {'formulario_vehiculo': formulario_vehiculo})
 
 
 def busqueda(request):
